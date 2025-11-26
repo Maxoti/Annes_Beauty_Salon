@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annes Mobile Beauty Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e91e63;
+            --secondary: #9c27b0;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gold: #ffd700;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.9), rgba(156, 39, 176, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e91e63" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .gallery {
+            background: white;
+            padding: 60px 20px;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .about {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05), rgba(156, 39, 176, 0.05));
+            padding: 60px 20px;
+            border-radius: 15px;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .coverage {
+            text-align: center;
+        }
+
+        .coverage-areas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .area-tag {
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            ANNES MOBILE BEAUTY SALON.
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Professional Beauty Services at Your Doorstep</h1>
+    <p>Experience salon-quality treatments in the comfort of your home. Mobile beauty services across Nairobi.</p>
+    <a href="#contact" class="cta-button">
+        📱 Book Now via WhatsApp
+    </a>
+</section>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+        
+        <div class="service-card">
+            <div class="service-icon"></div>
+            <h3>Braiding & Weaving</h3>
+            <p><strong>From KES 700</strong></p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon"></div>
+            <h3>Blow drying Services</h3>
+            <p><strong>From KES 200</strong></p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon"></div>
+            <h3>Drying services</h3>
+            <p><strong>From KES 250</strong></p>
+        </div>
+    </div>
+</section>
+
+<section class="gallery" id="gallery">
+    <h2>Our Work</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="images/Butterfly-locs.jpeg" alt="Butterfly-locs">
+            <div class="gallery-caption">Butterfly-locs</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/dreadlocks.jpeg" alt="dreadlocks">
+            <div class="gallery-caption">dreadlocks</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/Ghanaians.png" alt="Ghanaians">
+            <div class="gallery-caption">Ghanaians</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/knotless.jpeg" alt="knotless">
+            <div class="gallery-caption">knotless</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/makeba.jpeg" alt="makeba">
+            <div class="gallery-caption">makeba</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/Micro-mini-twist.jpeg" alt="Micro-mini-twist">
+            <div class="gallery-caption">Micro-mini-twist</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/school-lines.jpeg" alt="school-lines">
+            <div class="gallery-caption">school-lines</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/sister-loc.jpeg" alt="sister-loc">
+            <div class="gallery-caption">sister-loc</div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/Stitch-lines.jpeg" alt="Stitch-lines">
+            <div class="gallery-caption">Stitch-lines</div>
+        </div>
+       
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-content">
+        <h2>About Us</h2>
+        <p style="font-size: 18px; line-height: 1.8;">
+            Welcome to Annes Beauty Salon! We bring professional beauty services directly to you. 
+            With years of experience and a passion for making every client feel beautiful, 
+            we offer convenient, high-quality mobile salon services across Nairobi.
+        </p>
+        <p style="font-size: 18px; margin-top: 20px;">
+            ✨ Professional & Experienced<br>
+            🏠 Comfort of Your Home<br>
+            ⏰ Flexible Scheduling<br>
+             Quality Products Only
+        </p>
+    </div>
+</section>
+
+<section class="coverage">
+    <h2>We Cover These Areas</h2>
+    <div class="coverage-areas">
+        <span class="area-tag">📍 Githurai</span>
+        <span class="area-tag">📍 Kasarani</span>
+        <span class="area-tag">📍 Kariobangi</span>
+        <span class="area-tag">📍 Lavington</span>
+        <span class="area-tag">📍 South B</span>
+        <span class="area-tag">📍 Umoja</span>
+        <span class="area-tag">📍 South C</span>
+        <span class="area-tag">📍 Ngong</span>
+    </div>
+    <p style="margin-top: 30px; font-size: 16px;">
+        Not in your area? <a href="#contact" style="color: var(--primary); font-weight: bold;">Contact us</a> - we might be able to accommodate!
+    </p>
+</section>
+
+<footer id="contact">
+    <h2 style="color: white;">Get in Touch</h2>
+    <p style="font-size: 18px; margin-bottom: 20px;">Book your appointment today!</p>
+    <div class="contact-info">
+        <div class="contact-item">
+            <span>📱</span>
+            <span>+254 790 394977</span>
+        </div>
+        <div class="contact-item">
+            <span>📧</span>
+            <span>anne125otienoes@gmail.com</span>
+        </div>
+        <div class="contact-item">
+            <span>📍</span>
+            <span>Mobile Services - Nairobi</span>
+        </div>
+    </div>
+    <p style="margin-top: 30px; opacity: 0.8;">© 2024 Annes Beauty Salon. All rights reserved.</p>
+</footer>
+
+<a href="https://wa.me/254790394977?text=Hi! I'd like to book an appointment" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+</a>
+
+</body>
+</html>
